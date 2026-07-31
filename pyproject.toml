@@ -1,0 +1,31 @@
+[project]
+name = "kaggriculture"
+version = "0.1.0"
+description = "Kaggriculture - Create an agent to play in this farming simulation and compete with others to maximize your income"
+readme = "README.md"
+authors = [
+    { name = "niits", email = "trungtdxz@gmail.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "kaggle>=2.2.4",
+    "kaggle-environments>=1.32.2",
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.1",
+    "pandas>=3.0.5",
+    "seaborn>=0.13.2",
+    "tqdm>=4.70.0",
+]
+
+[project.scripts]
+kaggriculture = "kaggriculture:main"
+
+[build-system]
+requires = ["uv_build>=0.11.2,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+    "ruff>=0.16.1",
+]
