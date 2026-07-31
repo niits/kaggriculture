@@ -19,6 +19,7 @@ dependencies = [
 
 [project.scripts]
 kaggriculture = "kaggriculture:main"
+kaggriculture-benchmark = "kaggriculture.evaluation.baseline_benchmark:main"
 
 [build-system]
 requires = ["uv_build>=0.11.2,<0.12.0"]

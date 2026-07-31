@@ -25,6 +25,13 @@ Kaggriculture is a two-player farming sim. Each player manages a farm and compet
 
 ## Your Agent
 
+### Repository Layout
+
+All project Python code must live under `src/kaggriculture/` because this repository
+uses the `src` package layout. Put agent implementations under
+`src/kaggriculture/agents/`; do not create Python source packages at the repository
+root. Keep tests under `tests/`.
+
 Your agent is a function that receives an observation and returns an action dict.
 
 **Observation fields:**
