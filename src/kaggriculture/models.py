@@ -2,14 +2,14 @@
 
 from typing import Literal, NotRequired, TypedDict
 
-type Crop = Literal["WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON"]
-type Animal = Literal["GOOSE", "COW", "SHEEP"]
-type AnimalProduct = Literal["EGG", "MILK", "WOOL"]
-type Product = Crop | AnimalProduct | Literal["FERTILIZER"]
-type PurchasableProduct = Literal["WHEAT", "FERTILIZER"]
-type ShedItem = Product | Animal
-type Quadrant = Literal["NW", "NE", "SW", "SE"]
-type Shop = Literal[
+Crop = Literal["WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON"]
+Animal = Literal["GOOSE", "COW", "SHEEP"]
+AnimalProduct = Literal["EGG", "MILK", "WOOL"]
+Product = Crop | AnimalProduct | Literal["FERTILIZER"]
+PurchasableProduct = Literal["WHEAT", "FERTILIZER"]
+ShedItem = Product | Animal
+Quadrant = Literal["NW", "NE", "SW", "SE"]
+Shop = Literal[
     "BAKERY",
     "PIZZA_SHOP",
     "BRUNCH_SPOT",
@@ -19,9 +19,9 @@ type Shop = Literal[
     "SMOOTHIE_SHOP",
     "FARMERS_MARKET",
 ]
-type Position = list[int]
-type Inventory = dict[ShedItem, int]
-type SeedInventory = dict[Crop, int]
+Position = list[int]
+Inventory = dict[ShedItem, int]
+SeedInventory = dict[Crop, int]
 
 
 class PlantTile(TypedDict):
@@ -59,8 +59,8 @@ class AnimalTile(TypedDict):
     pending_care_bonus: int
 
 
-type Tile = None | Literal["LOCKED"] | PlantTile | WeedTile | StructureTile | AnimalTile
-type Board = list[list[Tile]]
+Tile = Literal[None, "LOCKED"] | PlantTile | WeedTile | StructureTile | AnimalTile
+Board = list[list[Tile]]
 
 
 class FarmState(TypedDict):
@@ -78,7 +78,7 @@ class PrivateState(TypedDict):
     inventories: list[Inventory]
 
 
-type PriceShape = Literal["linear", "sq", "sqrt", "log", "log10"]
+PriceShape = Literal["linear", "sq", "sqrt", "log", "log10"]
 
 
 class MarketParameters(TypedDict):
@@ -123,8 +123,8 @@ class Observation(TypedDict):
     remainingOverageTime: NotRequired[float]
 
 
-type MovementActionName = Literal["NORTH", "SOUTH", "EAST", "WEST", "PASS"]
-type UnitActionName = (
+MovementActionName = Literal["NORTH", "SOUTH", "EAST", "WEST", "PASS"]
+UnitActionName = (
     MovementActionName
     | Literal[
         "PICKUP",
@@ -142,11 +142,11 @@ type UnitActionName = (
         "DIG",
     ]
 )
-type MarketActionName = Literal[
+MarketActionName = Literal[
     "BUY_SEED", "BUY_PRODUCT", "BUY_ANIMAL", "SELL", "HIRE", "BUY_LAND"
 ]
-type UnitAction = list[UnitActionName | ShedItem | int]
-type MarketOrder = list[
+UnitAction = list[UnitActionName | ShedItem | int]
+MarketOrder = list[
     MarketActionName | Crop | PurchasableProduct | Animal | Product | int
 ]
 

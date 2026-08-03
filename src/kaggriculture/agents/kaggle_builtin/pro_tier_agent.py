@@ -16,8 +16,8 @@ TARGET_SEED_COUNT = 15
 TARGET_SEED_PRICE = 50
 MAX_MARKET_ORDERS = 10
 
-type WorkerRole = Literal["farmer", "hand"]
-type TileTask = tuple[int, int, UnitActionName]
+WorkerRole = Literal["farmer", "hand"]
+TileTask = tuple[int, int, UnitActionName]
 
 
 def agent(obs: Observation) -> Action:

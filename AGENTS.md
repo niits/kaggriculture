@@ -4,6 +4,22 @@ This guide walks you through building an agent, testing it locally, and submitti
 
 For full game rules, the crop / animal / shop tables, the price function, and turn-processing order, see [README.md](README.md).
 
+## Dependency Policy
+
+The submission runtime is based on `gcr.io/kaggle-images/python:v163` (Python
+3.11.13). Its complete installed-package manifest is recorded in
+[`requirements/kaggle-image-v163.txt`](requirements/kaggle-image-v163.txt).
+This file is a version reference, not a requirements file to install wholesale.
+
+- Treat runtime packages used by the project as the core dependency set in
+  `[project].dependencies`.
+- Before adding or changing a dependency, look it up in the image manifest. If
+  present, pin the exact image version with `==`.
+- A package absent from the manifest must remain development-only and go in the
+  `dev` dependency group; do not import it from submission runtime code.
+  Development-only tools may stay in `dev` even when the image includes them,
+  but must use the image version when available.
+
 ## Game Overview
 
 Kaggriculture is a two-player farming sim. Each player manages a farm and competes to earn the most coins by buying seeds and livestock, planting, watering, harvesting, raising animals, hiring help, and trading on a dynamic market over a fixed season.
