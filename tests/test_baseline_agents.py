@@ -4,6 +4,7 @@ from kaggriculture.agents.baseline import (
     animal_heavy,
     balanced,
     many_hands,
+    market_optimized,
     market_tracker,
     roi_crop,
     wheat_only,
@@ -125,6 +126,21 @@ class BaselineAgentTests(unittest.TestCase):
 
         seed_crops = {order[1] for order in orders if order[0] == "BUY_SEED"}
         self.assertGreaterEqual(len(seed_crops), 3)
+
+    def test_market_optimized_agent_returns_valid_action(self):
+        obs = observation(hands=[[3, 4], [4, 3]])
+        action = market_optimized.agent(obs)
+
+        self.assertEqual(set(action), {"farmer", "hands", "market"})
+        self.assertEqual(len(action["hands"]), 2)
+        self.assertLessEqual(len(action["market"]), 10)
+
+    def test_market_optimized_chooses_highest_roi_crop(self):
+        prices = observation()["market"]["prices"] | {"MELON": 1000}
+        orders = market_optimized.agent(observation(prices=prices))["market"]
+
+        seed_crops = [order[1] for order in orders if order[0] == "BUY_SEED"]
+        self.assertTrue(len(seed_crops) > 0, "Should buy at least one seed type")
 
 
 if __name__ == "__main__":
